@@ -3,6 +3,7 @@ using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220302091634_CarToEngine_OneToOne")]
+    partial class CarToEngine_OneToOne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,9 +70,6 @@ namespace DataAccess.Migrations
                     b.Property<int>("Car_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("EngineType_Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("SerialNumber")
                         .HasColumnType("int");
 
@@ -85,8 +84,6 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("Car_Id")
                         .IsUnique();
-
-                    b.HasIndex("EngineType_Id");
 
                     b.ToTable("Engines");
                 });
@@ -120,26 +117,13 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Models.EngineType", "EngineType")
-                        .WithMany("Engines")
-                        .HasForeignKey("EngineType_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Car");
-
-                    b.Navigation("EngineType");
                 });
 
             modelBuilder.Entity("Models.Models.Car", b =>
                 {
                     b.Navigation("Engine")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Models.Models.EngineType", b =>
-                {
-                    b.Navigation("Engines");
                 });
 #pragma warning restore 612, 618
         }

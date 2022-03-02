@@ -15,5 +15,8 @@ namespace Models.Models
         public string Model { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public List<Engine> Engines { get; set; }
+
     }
 }

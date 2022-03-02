@@ -21,5 +21,7 @@ namespace Models.Models
         public string Brand { get; set; }
         [Required]
         public string Model { get; set; }
+
+        public Engine Engine { get; set; }
     }
 }
