@@ -1,4 +1,16 @@
+using DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+//Conection
+string connString = builder.Configuration.GetConnectionString("CarEngineDbConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CarEngineDbConnection"));
+
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
