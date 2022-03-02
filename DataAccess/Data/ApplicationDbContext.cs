@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,10 @@ namespace DataAccess.Data
         {
 
         }
-     
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Engine> Engines { get; set; }
+        public DbSet<EngineType> EngineTypes { get; set; }
+
+
     }
 }
